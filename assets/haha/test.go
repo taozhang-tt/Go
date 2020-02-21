@@ -1,0 +1,5 @@
+package haha
+
+func haha()  {
+
+}
