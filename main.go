@@ -1,6 +1,7 @@
 package main
 
 import (
+	"Go/app"
 	"Go/internal/api"
 	"Go/pkg/tgin/middleware"
 	"context"
@@ -18,7 +19,16 @@ func main() {
 	//initDefaultRouter()
 	//initBlankRouter()
 	//TwoServer()
-	StartAndExit()
+	//StartAndExit()
+
+	app.InitGlobalVar()
+	router := gin.New()
+	router.Use(middleware.LogrusLog(app.G.Log))
+	router.GET("/logrus-log", func(c *gin.Context) {
+		c.JSON(200, "hello world")
+	})
+
+	router.Run(":8080")
 }
 
 func initDefaultRouter()  {
